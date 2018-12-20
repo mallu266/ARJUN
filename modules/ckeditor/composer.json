@@ -1,0 +1,26 @@
+{
+    "name": "arjun/ckeditor",
+    "description": "CKEDITOR PANEL",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mallikarjun",
+            "email": "mallikarjun266@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ARJUN\\CKEDITOR\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ARJUN\\CKEDITOR\\CKEDITORSERVICEPROVIDER"
+            ]
+        }
+    }
+}

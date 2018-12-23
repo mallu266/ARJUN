@@ -26,9 +26,14 @@ Route::group(['prefix' => 'admin/acl', 'middleware' => ['web'], 'namespace' => $
     Route::get('usermatrix', 'ACLCONTROLLER@usermatrix');
     Route::post('rolematrix/post', 'ACLCONTROLLER@postrolematrix');
 });
-Route::group(['prefix' => 'admin/settings', 'middleware' => ['web'], 'namespace' => $namespace], function () {
+Route::group(['prefix' => 'admin/settings', 'middleware' => ['web'], 'namespace' => $namespace . '\SETTINGS'], function () {
     Route::get('/', 'SETTINGSCONTROLLER@index');
 });
 Route::group(['prefix' => 'admin/users', 'middleware' => ['web'], 'namespace' => $namespace], function () {
     Route::get('/', 'USERSCONTROLLER@index');
+    Route::get('add', 'USERSCONTROLLER@action');
+    Route::get('show/{id}', 'USERSCONTROLLER@action');
+    Route::get('edit/{id}', 'USERSCONTROLLER@action');
+    Route::get('delete', 'USERSCONTROLLER@action');
+    Route::post('action/{id?}', 'USERSCONTROLLER@addupdate');
 });

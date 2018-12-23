@@ -1,6 +1,6 @@
 <?php
 
-namespace ARJUN\ADMIN\CONTROLLERS;
+namespace ARJUN\ADMIN\CONTROLLERS\SETTINGS;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;

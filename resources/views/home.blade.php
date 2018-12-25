@@ -17,11 +17,10 @@
                     @endif
 
                     <?php
-                    $user = auth('web')->user();
-//        $user->notify((new USERREGISTRATION($user))->delay($when));
-                    foreach ($user->notifications as $notification) {
-                        echo '<br>' . $notification->type;
-                    }
+                    $users = ARJUN\ADMIN\MODELS\USERS::where("id", 2)->first();
+
+                    $users->save();
+                    $users->defaultRole(2);
                     ?>
                 </div>
             </div>

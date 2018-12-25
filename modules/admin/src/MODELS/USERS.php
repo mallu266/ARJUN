@@ -42,7 +42,7 @@ class USERS extends Model {
     }
 
     public function role() {
-        return $this->belongsTo(DEFAULTROLE::class);
+        return $this->belongsTo(DEFAULTROLE::class, 'default_role', 'user_id', 'role_id');
     }
 
     public function assignRoles($roles) {
@@ -50,7 +50,14 @@ class USERS extends Model {
     }
 
     public function defaultRole($role) {
-        //  $this->role()->associate($role);
+        $user_id = auth()->user()->id;
+        $defaultrole = DEFAULTROLE::where('user_id', $user_id)->first();
+        if (empty($defaultrole)) {
+            $defaultrole = new DEFAULTROLE();
+        }
+        $defaultrole->user_id = $user_id;
+        $defaultrole->role_id = $role;
+        $defaultrole->save();
     }
 
     public function setPasswordAttribute($pass) {

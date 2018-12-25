@@ -11,15 +11,17 @@ class USERREGISTRATION extends Notification implements ShouldQueue {
 
     use Queueable;
 
-    protected $user;
+    protected $user, $password, $token;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($user) {
+    public function __construct($user, $password, $token) {
         $this->user = $user;
+        $this->password = $password;
+        $this->token = $token;
     }
 
     /**
@@ -41,10 +43,10 @@ class USERREGISTRATION extends Notification implements ShouldQueue {
      */
     public function toMail($notifiable) {
 //        $url = url('/invoice/' . $this->invoice->id);
-        $url = url('/');
+        $url = url('password/setpassword/' . base64_encode($this->user->email) . '/' . $this->token);
         return (new MailMessage())
                         ->greeting('Hello!')
-                        ->line('You have been registered!')
+                        ->line('Please find Temp Password ' . $this->password . ' And Set password')
                         ->action('Login', $url)
                         ->subject('Test')
 //                        ->error()

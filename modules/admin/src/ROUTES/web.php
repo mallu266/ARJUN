@@ -1,6 +1,12 @@
 <?php
 
 $namespace = "ARJUN\ADMIN\CONTROLLERS";
+
+Route::group(['prefix' => 'password', 'middleware' => 'web', 'namespace' => $namespace], function () {
+    Route::get('setpassword/{email}/{token}', 'USERSCONTROLLER@setpassword');
+    Route::post('setpassword', 'USERSCONTROLLER@PostSetPassword');
+});
+
 Route::group(['prefix' => 'admin', 'middleware' => 'web', 'namespace' => $namespace], function () {
     Route::get('/', 'ADMINCONTROLLER@login');
     Route::get('login', 'AUTH\LOGINCONTROLLER@showLoginForm');

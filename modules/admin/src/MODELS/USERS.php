@@ -3,10 +3,13 @@
 namespace ARJUN\ADMIN\MODELS;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use ARJUN\ADMIN\MODELS\ACL\ROLEUSERS;
 use ARJUN\ADMIN\MODELS\ACL\DEFAULTROLE;
 
 class USERS extends Model {
+
+    use Notifiable;
 
     protected $table = 'users';
 
@@ -47,7 +50,7 @@ class USERS extends Model {
     }
 
     public function defaultRole($role) {
-      //  $this->role()->associate($role);
+        //  $this->role()->associate($role);
     }
 
     public function setPasswordAttribute($pass) {

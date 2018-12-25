@@ -18,7 +18,7 @@
     <body>
         <div id="app">
             <?php
-            $authuser = auth()->user();
+            $authuser = auth('web')->user();
             $role_id = @$authuser->myrole->role_id;
             $myroles = @$authuser->myroles;
             $rolecontroller = new ARJUN\ADMIN\FUNCTIONS\ADMINSERVICE();
@@ -49,6 +49,20 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                             @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Notifications <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @foreach (Auth::user()->notifications as $notification) 
+                                    <a class="dropdown-item" href="">
+                                        {{$notification->type}}
+                                    </a>
+                                    @endforeach
+
+                                </div>
+                            </li>
                             <li>
                                 <select class="form-control small">
                                     <option>Select</option>

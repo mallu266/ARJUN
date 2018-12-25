@@ -4,15 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use ARJUN\ADMIN\TRAITS\HASCOMPOSITEPRIMARYKEY;
 use ARJUN\ADMIN\MODELS\ACL\DEFAULTROLE;
 use ARJUN\ADMIN\MODELS\ACL\ROLEUSERS;
 use ARJUN\ADMIN\MODELS\ACL\PERMISSIONROLE;
 
 class User extends Authenticatable {
 
-    use Notifiable,
-        HASCOMPOSITEPRIMARYKEY;
+    use Notifiable;
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',

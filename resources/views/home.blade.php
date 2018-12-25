@@ -16,7 +16,13 @@
                     </div>
                     @endif
 
-                    You are logged in!
+                    <?php
+                    $user = auth('web')->user();
+//        $user->notify((new USERREGISTRATION($user))->delay($when));
+                    foreach ($user->notifications as $notification) {
+                        echo '<br>' . $notification->type;
+                    }
+                    ?>
                 </div>
             </div>
         </div>

@@ -36,4 +36,5 @@ Route::group(['prefix' => 'admin/users', 'middleware' => ['web'], 'namespace' =>
     Route::get('edit/{id}', 'USERSCONTROLLER@action');
     Route::get('delete', 'USERSCONTROLLER@action');
     Route::post('action/{id?}', 'USERSCONTROLLER@addupdate');
+    Route::get('notify', 'USERSCONTROLLER@testnotification');
 });

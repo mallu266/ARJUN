@@ -33,19 +33,4 @@ class ADMINCONTROLLER extends Controller {
         Auth::guard('admin')->logout();
         return redirect('admin/login');
     }
-
-    public function installpackage() {
-        $id = request()->get('package');
-        $package = Packages::find($id);
-        $res = exec('cd .. && ' . $package->package);
-        if ($res) {
-            $response['status'] = 'success';
-            $response['message'] = 'Package Installed successfully';
-        } else {
-            $response['status'] = 'danger';
-            $response['message'] = 'Something went wrong';
-        }
-        return $response;
-    }
-
 }

@@ -15,7 +15,7 @@
                         {{ session('status') }}
                     </div>
                     @endif
-
+                    <div id="msg"></div>
                     <?php
                     $users = ARJUN\ADMIN\MODELS\USERS::where("id", 2)->first();
 

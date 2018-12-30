@@ -32,16 +32,16 @@ $permissionroles = new \ARJUN\ADMIN\CONTROLLERS\ACL\ACLCONTROLLER();
                                     <tbody>
                                         @foreach($permissions as $permission)
                                         <tr>
-                                            <th class="alert-warning">
-                                                <a href="{{url('admin/acl/roles/users')}}">
-                                                    <button type="button" class="btn btn-warning btn-xs">
-                                                        <span class="glyphicon glyphicon-link"></span></button>
+                                            <th>
+                                                <a href="{{url('admin/acl/permissions',$permission->id)}}">
+                                                    <span class="glyphicon glyphicon-link"></span>
+                                                    {{ $permission->name }}
                                                 </a>
-                                                {{ $permission->name }}
+
                                             </th>
                                             @for ($i=0; $i < $roles->count(); $i++ )
                                             <td data-container="body" data-trigger="focus" data-toggle="popover" data-placement="left" data-content="Role: {{$roles[$i]->name}}, Permission: {{$permission->slug}}">
-                                                <input <?php echo ($permissionroles->permissionrole($roles[$i]->id, $permission->id)) ? "checked" : "" ?><?php echo (in_array($roles[$i]->id, json_decode($permission->role_ids))) ? "" : "disabled" ?>  type="checkbox" name="permission_role[]" value="{{$roles[$i]->id.':'.$permission->id}}">
+                                                <input  <?php echo ($permissionroles->permissionrole($roles[$i]->id, $permission->id)) ? "checked" : "" ?><?php echo (!empty($permission->role_ids) && in_array($roles[$i]->id, json_decode($permission->role_ids))) ? "" : "disabled" ?>  type="checkbox" name="permission_role[]" value="{{$roles[$i]->id.':'.$permission->id}}">
                                             </td>    
                                             @endfor
                                         </tr>

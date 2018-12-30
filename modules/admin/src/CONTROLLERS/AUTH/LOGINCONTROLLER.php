@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 
-class LOGINCONTROLLER extends Controller
-{
+class LOGINCONTROLLER extends Controller {
     /*
       |--------------------------------------------------------------------------
       | Login Controller
@@ -20,7 +20,7 @@ class LOGINCONTROLLER extends Controller
       |
      */
 
-    use AuthenticatesUsers;
+use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -29,11 +29,8 @@ class LOGINCONTROLLER extends Controller
      */
     protected $redirectTo = 'admin/dashboard';
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->package = 'admin';
-        // $this->ftpbase = Storage::disk('ftp');
-        $this->middleware('guest', ['except' => 'logout']);
     }
 
     /**
@@ -41,13 +38,11 @@ class LOGINCONTROLLER extends Controller
      *
      * @return void
      */
-    public function showLoginForm()
-    {
+    public function showLoginForm() {
         return view($this->package . '::auth.login');
     }
 
-    public function login()
-    {
+    public function login() {
         $email = request()->get('email');
         $password = request()->get('password');
         if (Auth::guard('admin')->attempt(['email' => $email, 'password' => $password])) {
@@ -55,9 +50,21 @@ class LOGINCONTROLLER extends Controller
         }
     }
 
-    protected function guard()
-    {
+    protected function guard() {
         return Auth::guard('admin');
+    }
+
+    public function screenlock() {
+        session()->put('screenlock', true);
+    }
+
+    public function screenunlock(Request $request) {
+        $check = Hash::check($request->input('password'), $request->user()->password);
+        if ($check) {
+            session()->put('screenlock', false);
+            return 'true';
+        }
+        return 'false';
     }
 
 }

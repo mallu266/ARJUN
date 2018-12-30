@@ -33,7 +33,7 @@
                                     <label class="control-label col-sm-12" for="role">Role:</label>
                                     <div class="col-sm-12">
                                         @foreach($roles as $field)
-                                        <input type="checkbox" {{(@$permission->slug==$field->id)?"checked":""}} name="role_ids[]" value="{{$field->id}}">{{$field->name}}
+                                        <input  type="checkbox" <?php echo ((@$permission->role_ids) && in_array($field->id, json_decode($permission->role_ids))) ? "checked" : "" ?> name="role_ids[]" value="{{$field->id}}">{{$field->name}}
                                         @endforeach
                                     </div>
                                 </div>

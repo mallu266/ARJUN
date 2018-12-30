@@ -65,5 +65,6 @@
         </div>
         @yield('script')
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="{{asset('js/master.js')}}"></script>
     </body>
 </html>

@@ -6,11 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="base-url" id="base_url" content="{{ url('/') }}">
+        <meta name="screen-lock" id="screenlockstatus" content="{{ (auth()->check())? session('screenlock'):'' }}">
+        <!--<meta http-equiv="refresh" content="20;url=log" />-->
         <title>{{ config('app.name', 'Laravel') }}</title>
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -99,5 +105,34 @@
                 @yield('content')
             </main>
         </div>
+        <!-- The Modal -->
+        <div class="modal" id="screenunlock" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Unlock Screen</h4>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div id="screenlockmessage"></div>
+                       	<form class="form" name="screenlock">
+                            @csrf
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                                </div>
+                                <input type="password" name="password" class="form-control pwd" placeholder="Password" aria-describedby="validationTooltipUsernamePrepend" required>
+                            </div>
+                            <br>
+                            <div class="input-group">
+                                <input type="submit" value="Unlock" class="btn btn-success w-100">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="{{asset('js/master.js')}}"></script>
     </body>
 </html>

@@ -8,12 +8,13 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="base-url" id='base_url' content="{{ url('admin') }}">
-
+        <meta name="tab" id="segment" content="<?php echo (request()->segment(3)) ? request()->segment(3) : "primary" ?>">
+        <meta name="tabmodel" id="tabmodel" content="<?php echo request()->segment(2) ?>">
         <title>{{ config('app.name', 'Laravel') }}</title>
-
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -64,7 +65,7 @@
             </main>
         </div>
         @yield('script')
-        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        <script src="{{asset('js/master.js')}}"></script>
+        
+        <script src="{{asset('js/inputvalidations.js')}}"></script>
     </body>
 </html>

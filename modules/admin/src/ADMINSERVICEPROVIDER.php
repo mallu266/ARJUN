@@ -15,7 +15,7 @@ class ADMINSERVICEPROVIDER extends ServiceProvider {
         $this->loadRoutesFrom(__DIR__ . '/ROUTES/web.php');
         $this->loadViewsFrom(__DIR__ . '/VIEWS', 'admin');
         $this->loadMigrationsFrom(__DIR__ . '/MIGRATIONS');
-//        $this->mergeConfigFrom(__DIR__ . '/CONFIG/auth.php', 'admin');
+        $this->mergeConfigFrom(__DIR__ . '/CONFIG/auth.php', 'errorlog');
     }
 
     /**

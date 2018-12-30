@@ -50,4 +50,17 @@ Route::group(['prefix' => 'admin/users', 'middleware' => ['web', 'auth:admin', '
 });
 Route::group(['prefix' => 'admin/logs', 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace], function () {
     Route::get('/', 'LOGSCONTROLLER@index');
+    //    Users
+    Route::get('users/', 'LOGS\USERLOGSCONTROLLER@index');
+    Route::get('users/log/{id}', 'LOGS\USERLOGSCONTROLLER@viewlog');
+
+//    Queues
+    Route::get('queues/', 'LOGS\QUEUELOGSCONTROLLER@index');
+
+//    Errorlogs
+    Route::get('errorlogs/', 'LOGS\ERRORLOGCONTROLLER@index');
+//    Route::get('errorlogs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+//    DATATABLES
+    Route::get('users/datatable', 'LOGS\USERLOGSCONTROLLER@getDatatable');
+    Route::get('queues/datatable', 'LOGS\QUEUELOGSCONTROLLER@getDatatable');
 });

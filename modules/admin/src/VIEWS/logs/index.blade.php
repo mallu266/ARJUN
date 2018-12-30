@@ -11,42 +11,48 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Method</th>
-                                        <th>User Id</th>
-                                        <th>Route</th>
-                                         <th>IP Address</th>
-                                         <!--<th>Referer</th>-->
-                                         <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($logs as $item)
-                                    <tr>
-                                        <td>
-                                            {{ $item->methodType}}
-                                        </td>
-                                        <td>
-                                            {{ $item->userId}}
-                                        </td>
-                                        <td>
-                                            {{ $item->route}}
-                                        </td>
-                                        <td>
-                                            {{ $item->ipAddress}}
-                                        </td>
-<!--                                        <td>
-                                            {{ $item->referer}}
-                                        </td>-->
-                                        <td>
-                                            <a href="{{ url('admin/users/log', $item->id) }}">View</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                            <div class="row m_top_20">
+                                <div class="col-md-3">
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <h5>
+                                                <b class="themeColor pull-left"><i class="far fa-file-alt"></i> User Logs</b>
+                                            </h5>
+                                        </div>
+                                        <div class="panel-body text-center">
+                                            <i class="fas fa-user aclicon"></i>
+                                            <a class="btn btn-success btn-block" href="{{url('admin/logs/users')}}">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <h5>
+                                                <b class="themeColor pull-left"><i class="far fa-file-alt"></i> Queue Logs</b>
+                                            </h5>
+                                        </div>
+                                        <div class="panel-body text-center">
+                                            <i class="fas fa-list aclicon"></i>
+
+                                            <a class="btn btn-success btn-block"  href="{{url('admin/logs/queues')}}">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <h5>
+                                                <b class="themeColor pull-left"><i class="far fa-file-alt"></i> Error Logs</b>
+                                            </h5>
+                                        </div>
+                                        <div class="panel-body text-center">
+                                            <i class="fas fa-exclamation-triangle aclicon"></i>
+                                            <a class="btn btn-success btn-block" href="{{url('admin/logs/errorlogs')}}">View</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

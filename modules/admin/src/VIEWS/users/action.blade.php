@@ -20,7 +20,7 @@
                                 </ul>
                             </div>
                             @endif
-                            <form class="form-horizontal" method="POST" action="{{ url('admin/users/action', @request()->segment(4)) }}">
+                            <form class="form-horizontal" id="user_reg_form" method="POST" action="{{ url('admin/users/action', @request()->segment(4)) }}">
                                 @csrf
                                 <div class="form-group">
                                     <label class="control-label col-sm-2" for="role">Role:</label>
@@ -39,7 +39,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-2" for="name">Name:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" name="name" value="{{ @$users->name }}" class="form-control" id="name" placeholder="Enter Name">
+                                        <input type="text" name="name" value="{{ @$users->name }}" class="form-control alphanumeric" id="name" placeholder="Enter Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -63,4 +63,5 @@
 </div>
 @endsection
 @section('script')
+<script src="{{asset('js/users.js')}}"></script>
 @endsection

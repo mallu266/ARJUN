@@ -17,6 +17,7 @@
         <!-- Fonts -->
         <link rel="dns-prefetch" href="https://fonts.gstatic.com">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+        <script src='https://www.google.com/recaptcha/api.js?render=6LdozYUUAAAAAFRFmLVb0YnUge9sgkZFntA_qFvc'></script>
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -134,5 +135,13 @@
             </div>
         </div>
         <script src="{{asset('js/master.js')}}"></script>
+        <script>
+grecaptcha.ready(function () {
+    grecaptcha.execute('6LdozYUUAAAAAFRFmLVb0YnUge9sgkZFntA_qFvc', {action: 'action_name'})
+            .then(function (token) {
+// Verify the token on the server.
+            });
+});
+        </script>
     </body>
 </html>

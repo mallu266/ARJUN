@@ -24,7 +24,7 @@ class CAPTCHARULES implements Rule {
      * @return bool
      */
     public function passes($attribute, $value) {
-        $captcha = new ReCaptcha(env('CAPTCHA_SECRET_KEY'));
+        $captcha = new ReCaptcha("6Lcd-IUUAAAAAJ6cIGBVp_6gTJ2d1IrLIZK-qmTc");
         $response = $captcha->verify($value, $_SERVER['REMOTE_ADDR']);
         return $response->isSuccess();
     }
@@ -39,11 +39,10 @@ class CAPTCHARULES implements Rule {
     }
 
     protected function validator(array $data) {
-        echo "<pre>";print_r($data); exit;
         return Validator::make($data, [
                     'email' => 'required|string|email',
                     'password' => 'required',
-                    'g-recaptcha-response' => new CAPTCHARULES()
+                    'g-recaptcha-response' => 'required'
         ]);
     }
 

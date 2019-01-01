@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use ReCaptcha\ReCaptcha;
+//use ARJUN\ADMIN\RULES\CAPTCHARULES;
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+
 
 class LoginController extends Controller {
     /*
@@ -38,11 +40,10 @@ use AuthenticatesUsers;
     }
 
     protected function validateLogin(Request $request) {
-        echo "<pre>";print_r($request->all()); exit;
         $this->validate($request, [
             $this->username() => 'required|string',
             'password' => 'required|string',
-            'g-recaptcha-response' => new CAPTCHARULES()
+            'g-recaptcha-response' => 'required'
         ]);
     }
 

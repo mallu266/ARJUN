@@ -134,14 +134,6 @@
                 </div>
             </div>
         </div>
-        <script src="{{asset('js/master.js')}}"></script>
-        <script>
-grecaptcha.ready(function () {
-    grecaptcha.execute('6LdozYUUAAAAAFRFmLVb0YnUge9sgkZFntA_qFvc', {action: 'action_name'})
-            .then(function (token) {
-// Verify the token on the server.
-            });
-});
-        </script>
+        <!--<script src="{{asset('js/master.js')}}"></script>-->
     </body>
 </html>

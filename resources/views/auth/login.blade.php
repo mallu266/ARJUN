@@ -49,7 +49,8 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <div class="g-recaptcha" data-sitekey="6LdozYUUAAAAAFRFmLVb0YnUge9sgkZFntA_qFvc"></div>
+                                @captcha
+
                                 @if ($errors->has('g-recaptcha-response'))
                                 <span class="invalid-feedback" style="display: block;">
                                     <strong>{{ $errors->first('g-recaptcha-response') }}</strong>

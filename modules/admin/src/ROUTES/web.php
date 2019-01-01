@@ -59,7 +59,6 @@ Route::group(['prefix' => 'admin/logs', 'middleware' => ['web', 'auth:admin', 'l
 
 //    Errorlogs
     Route::get('errorlogs/', 'LOGS\ERRORLOGCONTROLLER@index');
-//    Route::get('errorlogs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 //    DATATABLES
     Route::get('users/datatable', 'LOGS\USERLOGSCONTROLLER@getDatatable');
     Route::get('queues/datatable', 'LOGS\QUEUELOGSCONTROLLER@getDatatable');

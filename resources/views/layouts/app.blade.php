@@ -133,6 +133,8 @@
                 </div>
             </div>
         </div>
-        <script src="{{asset('js/master.js')}}"></script>
+        @if(auth()->check())
+        <script src="{{asset('js/idleapplication.js')}}"></script>
+        @endif
     </body>
 </html>

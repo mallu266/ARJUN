@@ -65,7 +65,6 @@
             </main>
         </div>
         @yield('script')
-        
         <script src="{{asset('js/inputvalidations.js')}}"></script>
     </body>
 </html>

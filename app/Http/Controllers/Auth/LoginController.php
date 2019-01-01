@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Rules\CaptchaRule;
-
+use ReCaptcha\ReCaptcha;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller {
     /*
@@ -37,5 +37,13 @@ use AuthenticatesUsers;
         $this->middleware('guest')->except(['logout', 'locked', 'unlock']);
     }
 
+    protected function validateLogin(Request $request) {
+        echo "<pre>";print_r($request->all()); exit;
+        $this->validate($request, [
+            $this->username() => 'required|string',
+            'password' => 'required|string',
+            'g-recaptcha-response' => new CAPTCHARULES()
+        ]);
+    }
 
 }

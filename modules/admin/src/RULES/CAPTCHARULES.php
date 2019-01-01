@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Rules;
+namespace ARJUN\ADMIN\RULES;
 
 use Illuminate\Contracts\Validation\Rule;
 use ReCaptcha\ReCaptcha;
 
-class CaptchaRule implements Rule {
+class CAPTCHARULES implements Rule {
 
     /**
      * Create a new rule instance.
@@ -26,7 +26,6 @@ class CaptchaRule implements Rule {
     public function passes($attribute, $value) {
         $captcha = new ReCaptcha(env('CAPTCHA_SECRET_KEY'));
         $response = $captcha->verify($value, $_SERVER['REMOTE_ADDR']);
-
         return $response->isSuccess();
     }
 
@@ -40,10 +39,11 @@ class CaptchaRule implements Rule {
     }
 
     protected function validator(array $data) {
+        echo "<pre>";print_r($data); exit;
         return Validator::make($data, [
                     'email' => 'required|string|email',
                     'password' => 'required',
-                    'g-recaptcha-response' => new CaptchaRule()
+                    'g-recaptcha-response' => new CAPTCHARULES()
         ]);
     }
 

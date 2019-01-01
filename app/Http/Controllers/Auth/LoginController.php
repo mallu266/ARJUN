@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-//use ARJUN\ADMIN\RULES\CAPTCHARULES;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
-
 
 class LoginController extends Controller {
     /*

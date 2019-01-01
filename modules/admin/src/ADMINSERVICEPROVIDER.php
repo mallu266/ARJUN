@@ -5,6 +5,7 @@ namespace ARJUN\ADMIN;
 use ARJUN\ADMIN\FUNCTIONS\INVISIBLERECAPTCHA;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\Compilers\BladeCompiler;
+
 class ADMINSERVICEPROVIDER extends ServiceProvider {
 
     /**
@@ -17,7 +18,8 @@ class ADMINSERVICEPROVIDER extends ServiceProvider {
         $this->loadRoutesFrom(__DIR__ . '/ROUTES/web.php');
         $this->loadViewsFrom(__DIR__ . '/VIEWS', 'admin');
         $this->loadMigrationsFrom(__DIR__ . '/MIGRATIONS');
-        $this->mergeConfigFrom(__DIR__ . '/CONFIG/auth.php', 'errorlog');
+        $this->mergeConfigFrom(__DIR__ . '/CONFIG/admin.php', 'admin');
+        $this->mergeConfigFrom(__DIR__ . '/CONFIG/errorlog.php', 'errorlog');
         $this->mergeConfigFrom(__DIR__ . '/CONFIG/captcha.php', 'captcha');
         $this->bootConfig();
         $this->app['validator']->extend('captcha', function ($attribute, $value) {

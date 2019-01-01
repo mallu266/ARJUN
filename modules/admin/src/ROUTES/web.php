@@ -1,6 +1,8 @@
 <?php
 
 $namespace = "ARJUN\ADMIN\CONTROLLERS";
+$config = config('admin');
+
 
 Route::group(['middleware' => ['web'], 'namespace' => $namespace], function () {
     Route::get('login/lock', 'AUTH\LOGINCONTROLLER@screenlock');
@@ -11,16 +13,16 @@ Route::group(['prefix' => 'password', 'middleware' => ['web', 'logger:admin'], '
     Route::get('setpassword/{email}/{token}', 'USERSCONTROLLER@setpassword');
     Route::post('setpassword', 'USERSCONTROLLER@PostSetPassword');
 });
-Route::group(['prefix' => 'admin', 'middleware' => ['web', 'logger:admin'], 'namespace' => $namespace], function () {
+Route::group(['prefix' => $config['prefix'], 'middleware' => ['web', 'logger:admin'], 'namespace' => $namespace], function () {
     Route::get('/', 'ADMINCONTROLLER@login');
     Route::get('login', 'AUTH\LOGINCONTROLLER@showLoginForm');
     Route::post('login', 'AUTH\LOGINCONTROLLER@login');
 });
-Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace], function () {
+Route::group(['prefix' => $config['prefix'], 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace], function () {
     Route::get('dashboard', 'ADMINCONTROLLER@showDasbboard');
     Route::get('logout', 'ADMINCONTROLLER@logout');
 });
-Route::group(['prefix' => 'admin/acl', 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace . '\ACL'], function () {
+Route::group(['prefix' => $config['prefix'] . '/acl', 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace . '\ACL'], function () {
     Route::get('/', 'ACLCONTROLLER@index');
 //    Roles Controlles
     Route::get('roles/{id?}', 'ROLESCONTROLLER@index');
@@ -36,10 +38,10 @@ Route::group(['prefix' => 'admin/acl', 'middleware' => ['web', 'auth:admin', 'lo
     Route::get('usermatrix', 'ACLCONTROLLER@usermatrix');
     Route::post('rolematrix/post', 'ACLCONTROLLER@postrolematrix');
 });
-Route::group(['prefix' => 'admin/settings', 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace . '\SETTINGS'], function () {
+Route::group(['prefix' => $config['prefix'] . '/settings', 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace . '\SETTINGS'], function () {
     Route::get('/', 'SETTINGSCONTROLLER@index');
 });
-Route::group(['prefix' => 'admin/users', 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace], function () {
+Route::group(['prefix' => $config['prefix'] . '/users', 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace], function () {
     Route::get('/', 'USERSCONTROLLER@index');
     Route::get('add', 'USERSCONTROLLER@action');
     Route::get('show/{id}', 'USERSCONTROLLER@action');
@@ -48,7 +50,7 @@ Route::group(['prefix' => 'admin/users', 'middleware' => ['web', 'auth:admin', '
     Route::post('action/{id?}', 'USERSCONTROLLER@addupdate');
     Route::get('notify', 'USERSCONTROLLER@testnotification');
 });
-Route::group(['prefix' => 'admin/logs', 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace], function () {
+Route::group(['prefix' => $config['prefix'] . '/logs', 'middleware' => ['web', 'auth:admin', 'logger:admin'], 'namespace' => $namespace], function () {
     Route::get('/', 'LOGSCONTROLLER@index');
     //    Users
     Route::get('users/', 'LOGS\USERLOGSCONTROLLER@index');

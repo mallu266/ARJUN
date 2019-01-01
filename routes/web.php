@@ -14,10 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
-
-
 Route::group(['middleware' => ['web', 'auth', 'logger:web']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
 });
